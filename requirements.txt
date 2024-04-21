@@ -1,0 +1,21 @@
+python 3.8
+pytorch
+ominixai
+captum
+znnit
+lime
+ttach
+torchcam
+alibi
+
+tensorflow  然后pip typing-extensions==4.8
+
+
+python demo/main/video/sot_video.py --config 'experiments/siamfcpp/test/got10k/siamfcpp_alexnet-got.yaml' --device cuda --video "webcam" 
+
+python demo/main/video/sot_video.py --config 'experiments/siamfcpp/test/got10k/siamfcpp_alexnet-got.yaml' --device cuda --video $video_dir/demo.mp4 --output $dump_path/result.mp4
+
+python demo/main/video/sot_video.py --config 'experiments/siamfcpp/test/got10k/siamfcpp_alexnet-got.yaml' --device cuda --video test_img/1.JPEG --output test_out
+
+不同黑盒模型、不同层、不同解释方法对比图、权重图
+
