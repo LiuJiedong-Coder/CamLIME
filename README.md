@@ -1,4 +1,4 @@
-# ? 项目名称：YourProjectName
+# 项目名称：YourProjectName
 
 本项目为论文 **《论文标题》**（作者，发表年份）中所提出方法的官方实现。我们提供了完整的实验代码、环境依赖配置以及运行流程，方便学术复现与二次研究。
 
@@ -8,7 +8,7 @@
 
 ---
 
-## ? 项目结构说明
+## 项目结构说明
 
 ```bash
 YourProjectName/
@@ -24,11 +24,11 @@ YourProjectName/
 
 ---
 
-## ? 环境依赖
+## 环境依赖
 
 本项目基于 Python 开发，推荐使用 Anaconda 或 Virtualenv 搭建虚拟环境。
 
-### ? Python依赖包（见 `requirements.txt`）：
+### Python依赖包（见 `requirements.txt`）：
 
 ```txt
 python>=3.8
@@ -40,7 +40,7 @@ matplotlib
 tqdm
 ```
 
-### ? 创建并激活虚拟环境（可选）：
+### 创建并激活虚拟环境（可选）：
 
 ```bash
 conda create -n yourproject python=3.8
@@ -50,7 +50,7 @@ pip install -r requirements.txt
 
 ---
 
-## ? 快速开始
+## 快速开始
 
 ### 1. 克隆仓库
 
@@ -77,7 +77,7 @@ python scripts/test.py --checkpoint checkpoints/model_best.pth
 
 ---
 
-## ? 实验结果复现
+## 实验结果复现
 
 如需复现论文中的定量结果和图表，请参考：
 
@@ -87,7 +87,7 @@ python scripts/test.py --checkpoint checkpoints/model_best.pth
 
 ---
 
-## ? 引用本论文
+## 引用本论文
 
 如果您在研究中使用了本项目的代码，请引用我们论文：
 
@@ -106,7 +106,7 @@ python scripts/test.py --checkpoint checkpoints/model_best.pth
 
 ---
 
-## ? 版权与许可证
+## 版权与许可证
 
 本项目采用 MIT License 许可，详情请见 [LICENSE](./LICENSE) 文件。
 
@@ -120,7 +120,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy...
 
 ---
 
-## ? 常见问题（FAQ）
+## 常见问题（FAQ）
 
 1. **Q: 数据集下载失败怎么办？**  
    A: 请确认网络连接或使用国内镜像，或联系作者获取替代链接。
@@ -133,6 +133,6 @@ Permission is hereby granted, free of charge, to any person obtaining a copy...
 
 ---
 
-## ? 贡献与反馈
+## 贡献与反馈
 
 欢迎提交 Issue 或 Pull Request 进行贡献！如有任何问题或建议，也欢迎通过邮件联系作者。
