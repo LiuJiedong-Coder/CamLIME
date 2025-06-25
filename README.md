@@ -1,25 +1,35 @@
-# 项目名称：YourProjectName
+# 项目名称：CamLIME
 
-本项目为论文 **《论文标题》**（作者，发表年份）中所提出方法的官方实现。我们提供了完整的实验代码、环境依赖配置以及运行流程，方便学术复现与二次研究。
+本项目为论文 **《基于类激活的卷积神经网络局部解释方法研究》**（刘杰东，2025）中所提出方法的官方实现。我们提供了完整的实验代码、环境依赖配置以及运行流程，方便学术复现与二次研究。
 
-> ? 论文链接：[arXiv / IEEE / ACM / Springer 链接]  
-> ? 联系作者：[email@example.com]  
-> ??? 作者单位：[实验室/学院/大学名称]
+> 论文链接：[arXiv / IEEE / ACM / Springer 链接]  
+> 联系作者：[1041674453@qq.com]  
+> 作者单位：[RAier/计算机科学与工程学院/西安理工大学]
 
 ---
 
 ## 项目结构说明
 
 ```bash
-YourProjectName/
-├── src/                # 核心代码实现
-├── scripts/            # 训练/测试脚本
-├── configs/            # 配置文件
-├── data/               # 数据加载与预处理（或放置说明文档）
-├── checkpoints/        # 预训练模型或保存的权重
-├── requirements.txt    # Python依赖列表
-├── README.md           # 项目说明文档
-└── LICENSE             # 开源许可证
+CamLIME/
+├── src/                   # 核心代码实现
+├── scripts/               # 训练/测试脚本
+├── configs/               # 配置文件
+├── data/                  # 数据加载与预处理（或放置说明文档）
+├── checkpoints/           # 预训练模型或保存的权重
+├── requirements.txt       # Python依赖列表
+├── CAM_LIME.py            # CamLIME核心代码
+├── CAM_LIME_w_f.py        # 权重与超像素特征关系曲线
+├── CAM_LIME_fues_act.py   # 多个特征层融合激活
+├── my_difact.py           # CamLIME框架中不同激活模式对比效果
+├── my_diflayer.py         # CamLIME框架中不同激活层对比效果
+├── my_difact_diflayer.py  # CamLIME框架中不同激活模式及不同激活层双变量对比效果
+├── my_difmodel.py         # CamLIME框架对不同黑盒模型的解释效果
+├── my_difExp_vis.py       # CamLIME与部分解释方法的对比
+├── README.md              # 项目说明文档
+└── LICENSE                # 开源许可证
+
+
 ```
 
 ---
