@@ -18,7 +18,7 @@ CamLIME/
 ├── lime/                     # lime的源码，含自重写 
 ├── pytorch_grad_cam/         # GradCam的源码，含自重写
 ├── quantus/                  # Quantus可解释性指标评估工具
-├── MyOthersCode/             # CamLIME框架探索过程中其它测试代码，使用时取出放于项目根目录后再运行
+├── MyOthersCode/             # CamLIME框架探索过程中其它测试代码，使用时取出放于项目根目录后再运行1
 ├── requirements.txt          # Python依赖列表
 ├── CAM_LIME.py               # CamLIME核心代码
 ├── CAM_LIME_w_f.py           # 权重与超像素特征关系曲线
