@@ -12,22 +12,26 @@
 
 ```bash
 CamLIME/
-├── src/                   # 核心代码实现
-├── scripts/               # 训练/测试脚本
-├── configs/               # 配置文件
-├── data/                  # 数据加载与预处理（或放置说明文档）
-├── checkpoints/           # 预训练模型或保存的权重
-├── requirements.txt       # Python依赖列表
-├── CAM_LIME.py            # CamLIME核心代码
-├── CAM_LIME_w_f.py        # 权重与超像素特征关系曲线
-├── CAM_LIME_fues_act.py   # 多个特征层融合激活
-├── my_difact.py           # CamLIME框架中不同激活模式对比效果
-├── my_diflayer.py         # CamLIME框架中不同激活层对比效果
-├── my_difact_diflayer.py  # CamLIME框架中不同激活模式及不同激活层双变量对比效果
-├── my_difmodel.py         # CamLIME框架对不同黑盒模型的解释效果
-├── my_difExp_vis.py       # CamLIME与部分解释方法的对比
-├── README.md              # 项目说明文档
-└── LICENSE                # 开源许可证
+├── src/                      # 核心代码实现
+├── scripts/                  # 训练/测试脚本
+├── configs/                  # 配置文件
+├── data/                     # 数据加载与预处理（或放置说明文档）
+├── checkpoints/              # 预训练模型或保存的权重
+├── requirements.txt          # Python依赖列表
+├── CAM_LIME.py               # CamLIME核心代码
+├── CAM_LIME_w_f.py           # 权重与超像素特征关系曲线
+├── CAM_LIME_fues_act.py      # 多个特征层融合激活
+├── my_difact.py              # CamLIME框架中不同激活模式对比效果
+├── my_diflayer.py            # CamLIME框架中不同激活层对比效果
+├── my_difact_diflayer.py     # CamLIME框架中不同激活模式及不同激活层双变量对比效果
+├── my_difmodel.py            # CamLIME框架对不同黑盒模型的解释效果
+├── my_difExp_vis.py          # CamLIME与部分解释方法的对比
+├── my_metrics.py             # 基于Quantus重写的评价指标
+├── my_Complexity.py          # CamLIME与其他解释方法的复杂度比较
+├── my_Faithfulness.py        # CamLIME与其他解释方法的忠实性比较
+├── Quantus_CamLime_all.py    # 用Quantus库测试CamLIME的六类指标分数
+├── README.md                 # 项目说明文档
+└── LICENSE                   # 开源许可证
 
 
 ```

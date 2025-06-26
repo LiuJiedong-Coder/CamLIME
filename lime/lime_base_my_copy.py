@@ -5,6 +5,7 @@ import numpy as np
 import scipy as sp
 from sklearn.linear_model import Ridge, lars_path
 from sklearn.utils import check_random_state
+import cv2
 import torch
 import torch.nn as nn
 
@@ -32,6 +33,12 @@ def bilinear_interpolation(input_matrix, output_shape):
     output_matrix = griddata(points, values, (x_new_grid, y_new_grid), method='linear')
     return output_matrix
 
+def scale_cam_image(cam, target_size):
+    cam = cam - np.min(cam)
+    cam = cam / (1e-7 + np.max(cam))
+    cam = cv2.resize(cam, target_size)
+    result = np.float32(cam)
+    return result
 
 
 class LimeBase(object):
@@ -101,12 +108,12 @@ class LimeBase(object):
             return np.array(range(data.shape[1]))
         elif method == 'forward_selection':
             return self.forward_selection(data, labels, weights, num_features)
-        elif method == 'highest_weights':
+        elif method == 'highest_weights':         #用岭回归训练模型，选择权重最大的K个特征
             clf = Ridge(alpha=0.01, fit_intercept=True, random_state=self.random_state)
             clf.fit(data, labels, sample_weight=weights)
 
             coef = clf.coef_   # 特征权重
-            if sp.sparse.issparse(data):
+            if sp.sparse.issparse(data):   #检查data是否稀疏
                 coef = sp.sparse.csr_matrix(clf.coef_)
                 weighted_data = coef.multiply(data[0])
                 # Note: most efficient to slice the data before reversing
@@ -137,7 +144,7 @@ class LimeBase(object):
                 feature_weights = sorted(
                     zip(range(data.shape[1]), weighted_data),
                     key=lambda x: np.abs(x[1]),
-                    reverse=True)
+                    reverse=True)   #计算每个特征的权重，并按权重的绝对值从大到小进行排序
                 return np.array([x[0] for x in feature_weights[:num_features]])
         elif method == 'lasso_path':
             weighted_data = ((data - np.average(data, axis=0, weights=weights))
@@ -167,6 +174,8 @@ class LimeBase(object):
                                    distances,
                                    label,
                                    num_features,
+                                   image,
+                                   segments,
                                    cam_map,
                                    feature_selection='auto',
                                    model_regressor=None):
@@ -209,52 +218,49 @@ class LimeBase(object):
         weights = self.kernel_fn(distances)         #通过邻域样本距离计算邻域样本权重
         labels_column = neighborhood_labels[:, label]      #labels_colum.shape(8000,)
 
-
-        ########################################
-        # 个人方法，将CAM激活图通过相性插值法，得到与 neighborhood_data 大小相等的矩阵，然后与之点乘
-        interpolation_cam = bilinear_interpolation(cam_map, neighborhood_data.shape)
-        # print("interpolation_cam: ", interpolation_cam.shape)
-        # print(f'成功3')
+        #print(image.shape)
+        #### 个人方法，将CAM激活图通过线性插值法，得到与 org_image 的宽高相等的矩阵，然后对应上segement，取每个segement所对应cam激活块的最大值
+        interpolation_cam = scale_cam_image(cam_map, target_size=(image.shape[1], image.shape[0]))
+        #print("interpolation_cam: ", interpolation_cam.shape)
+        cam_list = []
+        for segment_id in np.unique(segments):
+            mask = segments == segment_id
+            #cam_list.append(np.max(interpolation_cam[mask])) #取每一块中的最大值
+            cam_list.append(np.mean(interpolation_cam[mask]))   #取每一块中的均值
+        print("cam_list: ", cam_list)
+        print(len(cam_list))
+        cam_array = np.array(cam_list).reshape(1, -1)   # 转化为array
+        repeat_cam_array = scale_cam_image(cam_array, target_size=(neighborhood_data.shape[1], neighborhood_data.shape[0]))   #插值
+        # repeat_cam_array = cam_array.repeat(neighborhood_data.shape[0], 0)  #复制邻域样本数量行
+        # print("复制行后的repeat_cam_array", repeat_cam_array.shape)
         neighborhood_data_old = neighborhood_data.astype(float)
-        neighborhood_data = np.round(np.multiply(neighborhood_data_old, interpolation_cam), 4)  #CAM激活图与neighborhood_data 点乘
-        ##########################################
+        neighborhood_data = np.round(np.multiply(neighborhood_data_old, repeat_cam_array), 4)
+        ################
 
-        #######个人方法，将CAM激活图通过全连接层转化为 1*used_features 的一维向量，再将该一维张量复制成  邻域样本数*used_features 大小的矩阵，最后与neighborhood_data点乘
-        # cam_height, cam_width = cam_map.shape[0], cam_map.shape[1]
-        # fc_layer = nn.Linear(cam_height * cam_width, neighborhood_data.shape[1])
-        # flattened_cam = fc_layer(torch.from_numpy(cam_map.reshape(1, -1)))
-        #
-        # # print("扁平化后的flattened_cam: ", flattened_cam.shape)
-        # repeat_cam = flattened_cam.repeat(neighborhood_data.shape[0], 1)
-        # # print("复制行后的repeat_cam", repeat_cam.shape)
-        # # print('成功3')
-        # neighborhood_data_old = neighborhood_data.astype(float)
-        # neighborhood_data = np.round(np.multiply(neighborhood_data_old, repeat_cam.detach()), 4)
-        ###########
-
-        used_features = self.feature_selection(neighborhood_data, labels_column, weights, num_features, feature_selection)
-        print("used_features: ", used_features.shape)
-
-
-        ########################################
-        # 个人方法，将CAM激活图通过相性插值法，得到与 neighborhood_data 大小相等的矩阵，然后与之点乘
-        # interpolation_cam = bilinear_interpolation(cam_map, neighborhood_data[:, used_features].shape)
+        #一直使用,效果好
+        #### 个人方法，将CAM激活图通过线性插值法，得到与 neighborhood_data 大小相等的矩阵，然后与之点乘
+        # interpolation_cam = bilinear_interpolation(cam_map, neighborhood_data.shape)   #自写双线性插值法,效果更好一些
+        # #interpolation_cam = scale_cam_image(cam_map, target_size=(neighborhood_data.shape[1], neighborhood_data.shape[0])) #CAM方法中双线性插值法的代码,与上句等效,效果略差
         # # print("interpolation_cam: ", interpolation_cam.shape)
-        # # print(f'成功3')
-        # neighborhood_data_old = neighborhood_data[:, used_features].astype(float)
-        # neighborhood_data = np.round(np.multiply(neighborhood_data_old, interpolation_cam), 5)  #CAM激活图与neighborhood_data 点乘
+        # neighborhood_data_old = neighborhood_data.astype(float)
+        # neighborhood_data = np.round(np.multiply(neighborhood_data_old, interpolation_cam), 4)  #CAM激活图与neighborhood_data 点乘
         ##########################################
 
-        # 个人方法，将CAM激活图通过全连接层转化为 1*used_features 的一维向量，再将该一维张量复制成  邻域样本数*used_features 大小的矩阵，最后与neighborhood_data点乘
-        # cam_height, cam_width = cam_map.shape[0], cam_map.shape[1]
-        # fc_layer = nn.Linear(cam_height * cam_width, used_features.shape[0])
-        # flattened_cam = fc_layer(torch.from_numpy(cam_map.reshape(1, -1)))
-        # # print("扁平化后的flattened_cam: ", flattened_cam.shape)
-        # repeat_cam = flattened_cam.repeat(neighborhood_data.shape[0], 1)
-        # # print("复制行后的repeat_cam", repeat_cam.shape)
-        # # print('成功3')
-        # neighborhood_data_old = neighborhood_data[:, used_features].astype(float)
-        # neighborhood_data = np.round(np.multiply(neighborhood_data_old, repeat_cam.detach()), 4)
+        ###个人方法，将CAM激活图通过线性插值法转化为 1*used_features 的一维向量，再将该一维张量复制成  邻域样本数*used_features 大小的矩阵，最后与neighborhood_data点乘
+        # interpolation_cam = scale_cam_image(cam_map, target_size=(neighborhood_data.shape[1], 1))  # 将cam矩阵通过双线性插值方法拉成 1*num_features 大小的一维向量
+        # #print("interpolation_cam: ", interpolation_cam.shape)
+        # repeat_cam = interpolation_cam.repeat(neighborhood_data.shape[0], 0)
+        # #print("复制行后的repeat_cam", repeat_cam.shape)
+        # neighborhood_data_old = neighborhood_data.astype(float)
+        # neighborhood_data = np.round(np.multiply(neighborhood_data_old, repeat_cam), 4)
+        ##########
+
+        #得到特征重要性排序列表
+        used_features = self.feature_selection(neighborhood_data, labels_column, weights, num_features, feature_selection)
+        print("used_features.shape: ", used_features.shape)
+
+        ##第一版添加代码处
+        ##
 
         if model_regressor is None:
             model_regressor = Ridge(alpha=1, fit_intercept=True,

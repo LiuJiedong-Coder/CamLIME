@@ -252,7 +252,7 @@ class LimeImageExplainer(object):
         """
         n_features = np.unique(segments).shape[0]
 
-        # 得到可解释特征01矩阵，用于黑盒模型输入
+        # 得到可解释特征01矩阵，用于线性模型输入以及生成领域样本
         data = self.random_state.randint(0, 2, num_samples * n_features)\
             .reshape((num_samples, n_features))
         labels = []

@@ -1,5 +1,4 @@
-#from pytorch_grad_cam.base_cam import BaseCAM
-from pytorch_grad_cam.base_cam_my import BaseCAM
+from pytorch_grad_cam.base_cam import BaseCAM
 from pytorch_grad_cam.utils.svd_on_activations import get_2d_projection
 
 # https://arxiv.org/abs/2008.00299

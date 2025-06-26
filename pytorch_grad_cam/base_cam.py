@@ -25,6 +25,7 @@ class BaseCAM:
         self.compute_input_gradient = compute_input_gradient
         self.uses_gradients = uses_gradients
         self.activations_and_grads = ActivationsAndGradients(self.model, target_layers, reshape_transform)
+        self.ever_layer_cam = []  #个人添加，当为LayerCAM时，记录每层激活
 
     """ Get a vector of weights for every channel in the target layer.
         Methods that return weights channels,
@@ -111,12 +112,13 @@ class BaseCAM:
                                      layer_grads,
                                      eigen_smooth)
             cam = np.maximum(cam, 0)   #相当于做了一个relu，小于0的都置为0
+            self.ever_layer_cam.append(cam)  #个人添加，当为LayerCAM时，记录每层激活
             scaled = scale_cam_image(cam, target_size)
             cam_per_target_layer.append(scaled[:, None, :])
 
         return cam_per_target_layer
 
-    def aggregate_multi_layers( self, cam_per_target_layer: np.ndarray) -> np.ndarray:
+    def aggregate_multi_layers(self, cam_per_target_layer: np.ndarray) -> np.ndarray:
         cam_per_target_layer = np.concatenate(cam_per_target_layer, axis=1)
         cam_per_target_layer = np.maximum(cam_per_target_layer, 0)
         result = np.mean(cam_per_target_layer, axis=1)
