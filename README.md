@@ -148,7 +148,7 @@ data, labels = explainer.explain_instance_data_label(np.array(trans_C(img_pil)),
 
 | 图像A1 | 图像A2 |
 |--------|--------|
-| ![](./DemoImage/difBlack_diffAct1.png) | ![](./DemoImage/difBlack_diffAct.png) |
+| ![](./DemoImage/difBlack_diffAct1.png) | ![](./DemoImage/difBlack_diffAct2.png) |
 
 ---
 
