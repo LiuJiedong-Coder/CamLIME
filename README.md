@@ -70,8 +70,8 @@ zennit 0.5.1
 ### 创建并激活虚拟环境（可选）：
 
 ```bash
-conda create -n yourproject python=3.8
-conda activate yourproject
+conda create -n CamLIME python=3.8
+conda activate CamLIME
 pip install -r requirements.txt
 ```
 
@@ -82,29 +82,69 @@ pip install -r requirements.txt
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/YourUsername/YourProjectName.git
-cd YourProjectName
+git clone https://github.com/LiuJiedong-Coder/CamLIME.git
+cd CamLIME
 ```
 
 ### 2. 下载数据（或使用说明）
 
-请将数据集放置于 `data/` 目录下，或参考 `data/README.md` 获取数据下载方式与组织结构。
+请将数据集放置于 `data/` 目录下。
+
+```txt
+ImageNet2012数据集下载与处理参考：https://blog.csdn.net/weixin_47160526/article/details/132037269
+```
+
 
 ### 3. 训练模型
 
-```bash
-python scripts/train.py --config configs/your_config.yaml
+```txt
+python CAM_LIME.py
+
+关键参数：
+- 类激活模式选择
+parser.add_argument('--method', type=str, default='gradcam',
+                  choices=[
+                        'gradcam', 'hirescam', 'gradcam++',
+                        'scorecam', 'xgradcam', 'ablationcam',
+                        'eigencam', 'eigengradcam', 'layercam',
+                        'fullgrad', 'gradcamelementwise'
+                  ],
+                  help='CAM method')
+
+- 黑盒模型与激活层选择推荐，模型根参数量由小到大
+model_mob = models.mobilenet_v2(pretrained=True).eval().to(device)
+model_alex = models.alexnet(pretrained=True).eval().to(device)
+model_google = models.googlenet(pretrained=True).eval().to(device)
+model_res18 = models.resnet18(pretrained=True).eval().to(device)
+model1_inc = models.inception_v3(pretrained=True).eval().to(device)
+model_dense = models.densenet121(pretrained=True).eval().to(device)
+#model_vgg = models.vgg16(pretrained=True).eval().to(device)
+
+target_layers_mob = [model_mob.features[17]]   #mobilenet
+target_layers_alex = [model_alex.features[11]]   #alexnet
+target_layers_google = [model_google.inception5b]   #googlenet
+target_layers_res18 = [model_res18.layer4[-1]]   #resnet18,50
+target_layers_inc = [model1_inc.Mixed_7c]   #inception_v3
+target_layers_dense = [model_dense.features[-1]]  # vgg / densenet
+#target_layers_vgg = [model_vgg.features[-1]]
+
+- CamLIME关键代码与超参
+from lime import lime_image_my
+explainer = lime_image_my.LimeImageExplainer()
+# batch_predict分类预测函数 #num_samples是邻域图像个数
+data, labels = explainer.explain_instance_data_label(np.array(trans_C(img_pil)), batch_predict, top_labels=1, hide_color=0, num_samples=50)  
 ```
 
-### 4. 测试模型
+### 4. 解释效果评估
 
-```bash
-python scripts/test.py --checkpoint checkpoints/model_best.pth
+```txt
+运行 my_Complexity.py、my_Faithfulness.py、Quantus_CamLime_all.py
+使用时根据设备情况设置参数
 ```
 
 ---
 
-## 实验结果复现
+## 部分实验效果展示
 
 如需复现论文中的定量结果和图表，请参考：
 

@@ -46,7 +46,7 @@ def get_args():
         action='store_true',
         help='Reduce noise by taking the first principle component'
         'of cam_weights*activations')
-    parser.add_argument('--method', type=str, default='hirescam',
+    parser.add_argument('--method', type=str, default='gradcam',
                         choices=[
                             'gradcam', 'hirescam', 'gradcam++',
                             'scorecam', 'xgradcam', 'ablationcam',
