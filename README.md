@@ -12,11 +12,12 @@
 
 ```bash
 CamLIME/
-├── src/                      # 核心代码实现
-├── scripts/                  # 训练/测试脚本
-├── configs/                  # 配置文件
-├── data/                     # 数据加载与预处理（或放置说明文档）
-├── checkpoints/              # 预训练模型或保存的权重
+├── imagenet/                 # ImageNet数据集的标注
+├── test_img/                 # 用于代码测试的图片
+├── odb_img/                  # 用于图像检测的样本 
+├── lime/                     # lime的源码，含自重写 
+├── pytorch_grad_cam/         # GradCam的源码，含自重写
+├── quantus/                  # Quantus可解释性指标评估工具
 ├── requirements.txt          # Python依赖列表
 ├── CAM_LIME.py               # CamLIME核心代码
 ├── CAM_LIME_w_f.py           # 权重与超像素特征关系曲线
@@ -30,6 +31,10 @@ CamLIME/
 ├── my_Complexity.py          # CamLIME与其他解释方法的复杂度比较
 ├── my_Faithfulness.py        # CamLIME与其他解释方法的忠实性比较
 ├── Quantus_CamLime_all.py    # 用Quantus库测试CamLIME的六类指标分数
+├── Quantus_CamLime_test.py   # CamLIME的特征工程应用
+├── CamLIME_Face.py           # CamLIME的人脸识别应用
+├── CamLIME_Obd.py            # CamLIME的目标检测应用
+├── CamLIME_Seg.py            # CamLIME的图像分割应用
 ├── README.md                 # 项目说明文档
 └── LICENSE                   # 开源许可证
 

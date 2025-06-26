@@ -211,7 +211,8 @@ if __name__ == '__main__':
     }
     #img_path = 'test_img/cat_dog.jpg'
     #img_path = 'test_img/both.png'    #eigengradcam，fullgrad效果改进好
-    img_path = 'odb_img/bear.jpg'
+    #img_path = 'odb_img/bear.jpg'
+    img_path = 'odb_img/dog.jpg'
     #img_path = 'test_img/bird2.png'
     #img_path = 'test_img/ILSVRC2012_val_00011333.JPEG'
 
@@ -252,12 +253,12 @@ if __name__ == '__main__':
     explainer = lime_image_my.LimeImageExplainer()  # 个人修改
 
     # batch_predict分类预测函数，num_samples是LIME生成的邻域图像个数
-    data, labels = explainer.explain_instance_data_label(image, batch_predict, top_labels=1, hide_color=0, num_samples=100, random_seed=1000, batch_size=5, detect_task=True)
+    data, labels = explainer.explain_instance_data_label(image, batch_predict, top_labels=1, hide_color=0, num_samples=8000, random_seed=1234, batch_size=5, detect_task=True)
 
     explanation = explainer.explain_instance(grayscale_cam)
     from skimage.segmentation import mark_boundaries
 
-    num_features = 120
+    num_features = 20
     temp, mask = explanation.get_image_and_mask(explanation.top_labels[0], positive_only=False, num_features=num_features, hide_rest=False)
     img_boundry = mark_boundaries(temp / 255.0, mask)
 
