@@ -146,9 +146,21 @@ data, labels = explainer.explain_instance_data_label(np.array(trans_C(img_pil)),
 
 ## 部分实验效果展示
 
-| 图像A1 | 图像A2 |
+| 不同黑盒模型和不同类激活的解释 | 不同黑盒模型和不同类激活的多对象样本解释 |
 |--------|--------|
 | ![](./DemoImage/difBlack_diffAct1.png) | ![](./DemoImage/difBlack_diffAct2.png) |
+
+| 不同类激活模式对 ResNet18 预测结果的解释 | 不同类激活的特征与权重的关系图 |
+|--------|--------|
+| ![](./DemoImage/simBlack_difAct_resnet1.png) | ![](./DemoImage/weight_feature1.png) |
+
+|         CamLIME 不同类激活和 ResNet18 不同激活层的解释         |
+|:-------------------------------:|
+| ![](./DemoImage/difAct_difLayer_resnet1.png) |
+
+|         ResNet18 的层次类激活的融合解释         |
+|:-------------------------------:|
+| ![](./DemoImage/Figure_1.png) |
 
 ---
 
