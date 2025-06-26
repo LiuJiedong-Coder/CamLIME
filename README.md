@@ -12,7 +12,7 @@
 
 ```bash
 CamLIME/
-├── imagenet/                 # ImageNet数据集的标注
+├── imagenet/                 # ImageNet数据集的标注1
 ├── test_img/                 # 用于代码测试的图片
 ├── odb_img/                  # 用于图像检测的样本 
 ├── lime/                     # lime的源码，含自重写 
