@@ -146,11 +146,9 @@ data, labels = explainer.explain_instance_data_label(np.array(trans_C(img_pil)),
 
 ## 部分实验效果展示
 
-如需复现论文中的定量结果和图表，请参考：
-
-- `scripts/eval.py`：用于评估指标生成
-- `scripts/plot.py`：用于绘图展示
-- 数据来源与预处理说明见 `data/README.md`
+| 图像A1 | 图像A2 |
+|--------|--------|
+| ![](./DemoImage/difBlack_diffAct1.png) | ![](./DemoImage/difBlack_diffAct.png) |
 
 ---
 
