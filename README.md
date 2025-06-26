@@ -18,7 +18,7 @@ CamLIME/
 ├── lime/                     # lime的源码，含自重写 
 ├── pytorch_grad_cam/         # GradCam的源码，含自重写
 ├── quantus/                  # Quantus可解释性指标评估工具
-├── MyOthersCode/             # CamLIME框架探索过程中其它测试代码，使用时取出放于项目根目录后再运行1
+├── MyOthersCode/             # CamLIME框架探索过程中其它测试代码，使用时取出放于项目根目录后再运行
 ├── requirements.txt          # Python依赖列表
 ├── CAM_LIME.py               # CamLIME核心代码
 ├── CAM_LIME_w_f.py           # 权重与超像素特征关系曲线
@@ -48,16 +48,23 @@ CamLIME/
 
 本项目基于 Python 开发，推荐使用 Anaconda 或 Virtualenv 搭建虚拟环境。
 
-### Python依赖包（见 `requirements.txt`）：
+### 核心依赖及版本（见 `requirements.txt`）：
 
 ```txt
-python>=3.8
-numpy
-torch>=1.11.0
-torchvision
-scikit-learn
-matplotlib
-tqdm
+python 3.8.18
+torch 2.1.2+cu118
+torchaudio 2.1.2+cu118
+torchvision 0.16.2+cu118
+lime  0.2.0.1
+torchcam 0.4.0
+grad-cam 1.4.5
+captum 0.7.0
+alibi 0.9.5
+ttach 0.0.3
+tensorflow 2.12.0  
+typing-extensions 4.8
+omnixai 1.3.1
+zennit 0.5.1
 ```
 
 ### 创建并激活虚拟环境（可选）：
