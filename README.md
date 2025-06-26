@@ -1,59 +1,53 @@
-# ÏîÄ¿Ãû³Æ£ºCamLIME
+# é¡¹ç›®åç§°ï¼šCamLIME
 
-±¾ÏîÄ¿ÎªÂÛÎÄ **¡¶»ùÓÚÀà¼¤»îµÄ¾í»ýÉñ¾­ÍøÂç¾Ö²¿½âÊÍ·½·¨ÑÐ¾¿¡·**£¨Áõ½Ü¶«£¬2025£©ÖÐËùÌá³ö·½·¨µÄ¹Ù·½ÊµÏÖ¡£ÎÒÃÇÌá¹©ÁËÍêÕûµÄÊµÑé´úÂë¡¢»·¾³ÒÀÀµÅäÖÃÒÔ¼°ÔËÐÐÁ÷³Ì£¬·½±ãÑ§Êõ¸´ÏÖÓë¶þ´ÎÑÐ¾¿¡£
+æœ¬é¡¹ç›®ä¸ºè®ºæ–‡ **ã€ŠåŸºäºŽç±»æ¿€æ´»çš„å·ç§¯ç¥žç»ç½‘ç»œå±€éƒ¨è§£é‡Šæ–¹æ³•ç ”ç©¶ã€‹**ï¼ˆåˆ˜æ°ä¸œï¼Œ2025ï¼‰ä¸­æ‰€æå‡ºæ–¹æ³•çš„å®˜æ–¹å®žçŽ°ã€‚æˆ‘ä»¬æä¾›äº†å®Œæ•´çš„å®žéªŒä»£ç ã€çŽ¯å¢ƒä¾èµ–é…ç½®ä»¥åŠè¿è¡Œæµç¨‹ï¼Œæ–¹ä¾¿å­¦æœ¯å¤çŽ°ä¸ŽäºŒæ¬¡ç ”ç©¶ã€‚
 
-> ÂÛÎÄÁ´½Ó£º[arXiv / IEEE / ACM / Springer Á´½Ó]  
-> ÁªÏµ×÷Õß£º[1041674453@qq.com]  
-> ×÷Õßµ¥Î»£º[RAier/¼ÆËã»ú¿ÆÑ§Óë¹¤³ÌÑ§Ôº/Î÷°²Àí¹¤´óÑ§]
+> è®ºæ–‡é“¾æŽ¥ï¼š[arXiv / IEEE / ACM / Springer é“¾æŽ¥]  
+> è”ç³»ä½œè€…ï¼š[1041674453@qq.com]  
+> ä½œè€…å•ä½ï¼š[RAier/è®¡ç®—æœºç§‘å­¦ä¸Žå·¥ç¨‹å­¦é™¢/è¥¿å®‰ç†å·¥å¤§å­¦]
 
 ---
 
-## ÏîÄ¿½á¹¹ËµÃ÷
+## é¡¹ç›®ç»“æž„è¯´æ˜Ž
 
 ```bash
 CamLIME/
-©À©¤©¤ imagenet/                 # ImageNetÊý¾Ý¼¯µÄ±ê×¢
-©À©¤©¤ test_img/                 # ÓÃÓÚ´úÂë²âÊÔµÄÍ¼Æ¬
-©À©¤©¤ odb_img/                  # ÓÃÓÚÍ¼Ïñ¼ì²âµÄÑù±¾ 
-©À©¤©¤ lime/                     # limeµÄÔ´Âë£¬º¬×ÔÖØÐ´ 
-©À©¤©¤ pytorch_grad_cam/         # GradCamµÄÔ´Âë£¬º¬×ÔÖØÐ´
-©À©¤©¤ quantus/                  # Quantus¿É½âÊÍÐÔÖ¸±êÆÀ¹À¹¤¾ß
-<<<<<<< HEAD
-©À©¤©¤ MyOtherTestCode/          # CamLIME¿ò¼ÜÌ½Ë÷¹ý³ÌÖÐµÄÆäËü²âÊÔ´úÂë£¬Ê¹ÓÃÊ±Çë¸´ÖÆµ½¸ùÄ¿Â¼ÔÙÔËÐÐ1
-=======
-©À©¤©¤ data/                     # Êý¾Ý¼¯
-©À©¤©¤ MyOtherTestCode/          # CamLIME¿ò¼ÜÌ½Ë÷¹ý³ÌÖÐµÄÆäËü²âÊÔ´úÂë£¬Ê¹ÓÃÊ±Çë¸´ÖÆµ½¸ùÄ¿Â¼ÔÙÔËÐÐ  
->>>>>>> d542d6c326a6f31b58fb316ebdf9ea83bf2b6b07
-©À©¤©¤ requirements.txt          # PythonÒÀÀµÁÐ±í
-©À©¤©¤ CAM_LIME.py               # CamLIMEºËÐÄ´úÂë
-©À©¤©¤ CAM_LIME_w_f.py           # È¨ÖØÓë³¬ÏñËØÌØÕ÷¹ØÏµÇúÏß
-©À©¤©¤ CAM_LIME_fues_act.py      # ¶à¸öÌØÕ÷²ãÈÚºÏ¼¤»î
-©À©¤©¤ my_difact.py              # CamLIME¿ò¼ÜÖÐ²»Í¬¼¤»îÄ£Ê½¶Ô±ÈÐ§¹û
-©À©¤©¤ my_diflayer.py            # CamLIME¿ò¼ÜÖÐ²»Í¬¼¤»î²ã¶Ô±ÈÐ§¹û
-©À©¤©¤ my_difact_diflayer.py     # CamLIME¿ò¼ÜÖÐ²»Í¬¼¤»îÄ£Ê½¼°²»Í¬¼¤»î²ãË«±äÁ¿¶Ô±ÈÐ§¹û
-©À©¤©¤ my_difmodel.py            # CamLIME¿ò¼Ü¶Ô²»Í¬ºÚºÐÄ£ÐÍµÄ½âÊÍÐ§¹û
-©À©¤©¤ my_difExp_vis.py          # CamLIMEÓë²¿·Ö½âÊÍ·½·¨µÄ¶Ô±È
-©À©¤©¤ my_metrics.py             # »ùÓÚQuantusÖØÐ´µÄÆÀ¼ÛÖ¸±ê
-©À©¤©¤ my_Complexity.py          # CamLIMEÓëÆäËû½âÊÍ·½·¨µÄ¸´ÔÓ¶È±È½Ï
-©À©¤©¤ my_Faithfulness.py        # CamLIMEÓëÆäËû½âÊÍ·½·¨µÄÖÒÊµÐÔ±È½Ï
-©À©¤©¤ Quantus_CamLime_all.py    # ÓÃQuantus¿â²âÊÔCamLIMEµÄÁùÀàÖ¸±ê·ÖÊý
-©À©¤©¤ Quantus_CamLime_test.py   # CamLIMEµÄÌØÕ÷¹¤³ÌÓ¦ÓÃ
-©À©¤©¤ CamLIME_Face.py           # CamLIMEµÄÈËÁ³Ê¶±ðÓ¦ÓÃ
-©À©¤©¤ CamLIME_Obd.py            # CamLIMEµÄÄ¿±ê¼ì²âÓ¦ÓÃ
-©À©¤©¤ CamLIME_Seg.py            # CamLIMEµÄÍ¼Ïñ·Ö¸îÓ¦ÓÃ
-©À©¤©¤ README.md                 # ÏîÄ¿ËµÃ÷ÎÄµµ
-©¸©¤©¤ LICENSE                   # ¿ªÔ´Ðí¿ÉÖ¤
+â”œâ”€â”€ imagenet/                 # ImageNetæ•°æ®é›†çš„æ ‡æ³¨
+â”œâ”€â”€ test_img/                 # ç”¨äºŽä»£ç æµ‹è¯•çš„å›¾ç‰‡
+â”œâ”€â”€ odb_img/                  # ç”¨äºŽå›¾åƒæ£€æµ‹çš„æ ·æœ¬ 
+â”œâ”€â”€ lime/                     # limeçš„æºç ï¼Œå«è‡ªé‡å†™ 
+â”œâ”€â”€ pytorch_grad_cam/         # GradCamçš„æºç ï¼Œå«è‡ªé‡å†™
+â”œâ”€â”€ quantus/                  # Quantuså¯è§£é‡Šæ€§æŒ‡æ ‡è¯„ä¼°å·¥å…·
+â”œâ”€â”€ requirements.txt          # Pythonä¾èµ–åˆ—è¡¨
+â”œâ”€â”€ CAM_LIME.py               # CamLIMEæ ¸å¿ƒä»£ç 
+â”œâ”€â”€ CAM_LIME_w_f.py           # æƒé‡ä¸Žè¶…åƒç´ ç‰¹å¾å…³ç³»æ›²çº¿
+â”œâ”€â”€ CAM_LIME_fues_act.py      # å¤šä¸ªç‰¹å¾å±‚èžåˆæ¿€æ´»
+â”œâ”€â”€ my_difact.py              # CamLIMEæ¡†æž¶ä¸­ä¸åŒæ¿€æ´»æ¨¡å¼å¯¹æ¯”æ•ˆæžœ
+â”œâ”€â”€ my_diflayer.py            # CamLIMEæ¡†æž¶ä¸­ä¸åŒæ¿€æ´»å±‚å¯¹æ¯”æ•ˆæžœ
+â”œâ”€â”€ my_difact_diflayer.py     # CamLIMEæ¡†æž¶ä¸­ä¸åŒæ¿€æ´»æ¨¡å¼åŠä¸åŒæ¿€æ´»å±‚åŒå˜é‡å¯¹æ¯”æ•ˆæžœ
+â”œâ”€â”€ my_difmodel.py            # CamLIMEæ¡†æž¶å¯¹ä¸åŒé»‘ç›’æ¨¡åž‹çš„è§£é‡Šæ•ˆæžœ
+â”œâ”€â”€ my_difExp_vis.py          # CamLIMEä¸Žéƒ¨åˆ†è§£é‡Šæ–¹æ³•çš„å¯¹æ¯”
+â”œâ”€â”€ my_metrics.py             # åŸºäºŽQuantusé‡å†™çš„è¯„ä»·æŒ‡æ ‡
+â”œâ”€â”€ my_Complexity.py          # CamLIMEä¸Žå…¶ä»–è§£é‡Šæ–¹æ³•çš„å¤æ‚åº¦æ¯”è¾ƒ
+â”œâ”€â”€ my_Faithfulness.py        # CamLIMEä¸Žå…¶ä»–è§£é‡Šæ–¹æ³•çš„å¿ å®žæ€§æ¯”è¾ƒ
+â”œâ”€â”€ Quantus_CamLime_all.py    # ç”¨Quantusåº“æµ‹è¯•CamLIMEçš„å…­ç±»æŒ‡æ ‡åˆ†æ•°
+â”œâ”€â”€ Quantus_CamLime_test.py   # CamLIMEçš„ç‰¹å¾å·¥ç¨‹åº”ç”¨
+â”œâ”€â”€ CamLIME_Face.py           # CamLIMEçš„äººè„¸è¯†åˆ«åº”ç”¨
+â”œâ”€â”€ CamLIME_Obd.py            # CamLIMEçš„ç›®æ ‡æ£€æµ‹åº”ç”¨
+â”œâ”€â”€ CamLIME_Seg.py            # CamLIMEçš„å›¾åƒåˆ†å‰²åº”ç”¨
+â”œâ”€â”€ README.md                 # é¡¹ç›®è¯´æ˜Žæ–‡æ¡£
+â””â”€â”€ LICENSE                   # å¼€æºè®¸å¯è¯
 
 
 ```
 
 ---
 
-## »·¾³ÒÀÀµ
+## çŽ¯å¢ƒä¾èµ–
 
-±¾ÏîÄ¿»ùÓÚ Python ¿ª·¢£¬ÍÆ¼öÊ¹ÓÃ Anaconda »ò Virtualenv ´î½¨ÐéÄâ»·¾³¡£
+æœ¬é¡¹ç›®åŸºäºŽ Python å¼€å‘ï¼ŒæŽ¨èä½¿ç”¨ Anaconda æˆ– Virtualenv æ­å»ºè™šæ‹ŸçŽ¯å¢ƒã€‚
 
-### PythonÒÀÀµ°ü£¨¼û `requirements.txt`£©£º
+### Pythonä¾èµ–åŒ…ï¼ˆè§ `requirements.txt`ï¼‰ï¼š
 
 ```txt
 python>=3.8
@@ -65,7 +59,7 @@ matplotlib
 tqdm
 ```
 
-### ´´½¨²¢¼¤»îÐéÄâ»·¾³£¨¿ÉÑ¡£©£º
+### åˆ›å»ºå¹¶æ¿€æ´»è™šæ‹ŸçŽ¯å¢ƒï¼ˆå¯é€‰ï¼‰ï¼š
 
 ```bash
 conda create -n yourproject python=3.8
@@ -75,26 +69,26 @@ pip install -r requirements.txt
 
 ---
 
-## ¿ìËÙ¿ªÊ¼
+## å¿«é€Ÿå¼€å§‹
 
-### 1. ¿ËÂ¡²Ö¿â
+### 1. å…‹éš†ä»“åº“
 
 ```bash
 git clone https://github.com/YourUsername/YourProjectName.git
 cd YourProjectName
 ```
 
-### 2. ÏÂÔØÊý¾Ý£¨»òÊ¹ÓÃËµÃ÷£©
+### 2. ä¸‹è½½æ•°æ®ï¼ˆæˆ–ä½¿ç”¨è¯´æ˜Žï¼‰
 
-Çë½«Êý¾Ý¼¯·ÅÖÃÓÚ `data/` Ä¿Â¼ÏÂ£¬»ò²Î¿¼ `data/README.md` »ñÈ¡Êý¾ÝÏÂÔØ·½Ê½Óë×éÖ¯½á¹¹¡£
+è¯·å°†æ•°æ®é›†æ”¾ç½®äºŽ `data/` ç›®å½•ä¸‹ï¼Œæˆ–å‚è€ƒ `data/README.md` èŽ·å–æ•°æ®ä¸‹è½½æ–¹å¼ä¸Žç»„ç»‡ç»“æž„ã€‚
 
-### 3. ÑµÁ·Ä£ÐÍ
+### 3. è®­ç»ƒæ¨¡åž‹
 
 ```bash
 python scripts/train.py --config configs/your_config.yaml
 ```
 
-### 4. ²âÊÔÄ£ÐÍ
+### 4. æµ‹è¯•æ¨¡åž‹
 
 ```bash
 python scripts/test.py --checkpoint checkpoints/model_best.pth
@@ -102,19 +96,19 @@ python scripts/test.py --checkpoint checkpoints/model_best.pth
 
 ---
 
-## ÊµÑé½á¹û¸´ÏÖ
+## å®žéªŒç»“æžœå¤çŽ°
 
-ÈçÐè¸´ÏÖÂÛÎÄÖÐµÄ¶¨Á¿½á¹ûºÍÍ¼±í£¬Çë²Î¿¼£º
+å¦‚éœ€å¤çŽ°è®ºæ–‡ä¸­çš„å®šé‡ç»“æžœå’Œå›¾è¡¨ï¼Œè¯·å‚è€ƒï¼š
 
-- `scripts/eval.py`£ºÓÃÓÚÆÀ¹ÀÖ¸±êÉú³É
-- `scripts/plot.py`£ºÓÃÓÚ»æÍ¼Õ¹Ê¾
-- Êý¾ÝÀ´Ô´ÓëÔ¤´¦ÀíËµÃ÷¼û `data/README.md`
+- `scripts/eval.py`ï¼šç”¨äºŽè¯„ä¼°æŒ‡æ ‡ç”Ÿæˆ
+- `scripts/plot.py`ï¼šç”¨äºŽç»˜å›¾å±•ç¤º
+- æ•°æ®æ¥æºä¸Žé¢„å¤„ç†è¯´æ˜Žè§ `data/README.md`
 
 ---
 
-## ÒýÓÃ±¾ÂÛÎÄ
+## å¼•ç”¨æœ¬è®ºæ–‡
 
-Èç¹ûÄúÔÚÑÐ¾¿ÖÐÊ¹ÓÃÁË±¾ÏîÄ¿µÄ´úÂë£¬ÇëÒýÓÃÎÒÃÇÂÛÎÄ£º
+å¦‚æžœæ‚¨åœ¨ç ”ç©¶ä¸­ä½¿ç”¨äº†æœ¬é¡¹ç›®çš„ä»£ç ï¼Œè¯·å¼•ç”¨æˆ‘ä»¬è®ºæ–‡ï¼š
 
 ```bibtex
 @article{yourpaper2025,
@@ -131,9 +125,9 @@ python scripts/test.py --checkpoint checkpoints/model_best.pth
 
 ---
 
-## °æÈ¨ÓëÐí¿ÉÖ¤
+## ç‰ˆæƒä¸Žè®¸å¯è¯
 
-±¾ÏîÄ¿²ÉÓÃ MIT License Ðí¿É£¬ÏêÇéÇë¼û [LICENSE](./LICENSE) ÎÄ¼þ¡£
+æœ¬é¡¹ç›®é‡‡ç”¨ MIT License è®¸å¯ï¼Œè¯¦æƒ…è¯·è§ [LICENSE](./LICENSE) æ–‡ä»¶ã€‚
 
 ```
 MIT License
@@ -145,19 +139,19 @@ Permission is hereby granted, free of charge, to any person obtaining a copy...
 
 ---
 
-## ³£¼ûÎÊÌâ£¨FAQ£©
+## å¸¸è§é—®é¢˜ï¼ˆFAQï¼‰
 
-1. **Q: Êý¾Ý¼¯ÏÂÔØÊ§°ÜÔõÃ´°ì£¿**  
-   A: ÇëÈ·ÈÏÍøÂçÁ¬½Ó»òÊ¹ÓÃ¹úÄÚ¾µÏñ£¬»òÁªÏµ×÷Õß»ñÈ¡Ìæ´úÁ´½Ó¡£
+1. **Q: æ•°æ®é›†ä¸‹è½½å¤±è´¥æ€Žä¹ˆåŠžï¼Ÿ**  
+   A: è¯·ç¡®è®¤ç½‘ç»œè¿žæŽ¥æˆ–ä½¿ç”¨å›½å†…é•œåƒï¼Œæˆ–è”ç³»ä½œè€…èŽ·å–æ›¿ä»£é“¾æŽ¥ã€‚
 
-2. **Q: Ê¹ÓÃ GPU ÑµÁ·Ê±±¨´í£¿**  
-   A: ÇëÈ·ÈÏ CUDA »·¾³Óë PyTorch °æ±¾Æ¥Åä¡£
+2. **Q: ä½¿ç”¨ GPU è®­ç»ƒæ—¶æŠ¥é”™ï¼Ÿ**  
+   A: è¯·ç¡®è®¤ CUDA çŽ¯å¢ƒä¸Ž PyTorch ç‰ˆæœ¬åŒ¹é…ã€‚
 
-3. **Q: ´úÂëÖÐÄ£ÐÍ½á¹¹¿ÉÒÔÐÞ¸ÄÂð£¿**  
-   A: ¿ÉÒÔ£¬×Ô¶¨ÒåÄ£¿é¼û `src/models/`¡£
+3. **Q: ä»£ç ä¸­æ¨¡åž‹ç»“æž„å¯ä»¥ä¿®æ”¹å—ï¼Ÿ**  
+   A: å¯ä»¥ï¼Œè‡ªå®šä¹‰æ¨¡å—è§ `src/models/`ã€‚
 
 ---
 
-## ¹±Ï×Óë·´À¡
+## è´¡çŒ®ä¸Žåé¦ˆ
 
-»¶Ó­Ìá½» Issue »ò Pull Request ½øÐÐ¹±Ï×£¡ÈçÓÐÈÎºÎÎÊÌâ»ò½¨Òé£¬Ò²»¶Ó­Í¨¹ýÓÊ¼þÁªÏµ×÷Õß¡£
+æ¬¢è¿Žæäº¤ Issue æˆ– Pull Request è¿›è¡Œè´¡çŒ®ï¼å¦‚æœ‰ä»»ä½•é—®é¢˜æˆ–å»ºè®®ï¼Œä¹Ÿæ¬¢è¿Žé€šè¿‡é‚®ä»¶è”ç³»ä½œè€…ã€‚
